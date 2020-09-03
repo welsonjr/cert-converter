@@ -1,0 +1,19 @@
+[package]
+name = "cert-converter"
+version = "0.1.0"
+authors = ["welsonjr"]
+license = "MIT"
+build = "build.rs"
+edition = "2018"
+exclude = ["artifacts.json", "index.node"]
+
+[lib]
+name = "cert_converter"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+neon-build = "0.4.0"
+
+[dependencies]
+neon = "0.4.0"
+openssl = "0.10.30"
