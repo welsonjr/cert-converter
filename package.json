@@ -15,7 +15,8 @@
     "build-release": "neon build --release",
     "install": "node-pre-gyp install --fallback-to-build=false || neon build --release",
     "package": "node-pre-gyp package",
-    "upload-binary": "yarn build-release && node-pre-gyp package && node-pre-gyp-github publish"
+    "upload-binary": "yarn build-release && node-pre-gyp package && node-pre-gyp-github publish",
+    "spec": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,8 @@
     "package_name": "{node_abi}-{platform}-{arch}.tar.gz",
     "module_path": "./native",
     "pkg_path": "."
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
   }
 }
