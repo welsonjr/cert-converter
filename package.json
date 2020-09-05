@@ -1,6 +1,6 @@
 {
   "name": "cert-converter",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Utility to convert certificate encodings",
   "main": "lib/index.js",
   "author": "welsonjr",
@@ -16,7 +16,7 @@
     "install": "node-pre-gyp install --fallback-to-build=false || neon build --release",
     "package": "node-pre-gyp package",
     "upload-binary": "yarn build-release && node-pre-gyp package && node-pre-gyp-github publish",
-    "spec": "jest"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

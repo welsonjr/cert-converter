@@ -21,10 +21,11 @@ before_install:
   # Install NPM packages
   - node -v
   - npm -v
-  - npm install
+  - yarn global add yarn@latest
+  - yarn
 
 script:
-  - npm test
+  - yarn test
   # Publish when using '[publish binary]' keywords
   - COMMIT_MESSAGE=$(git log --format=%B --no-merges -n 1 | tr -d '\n')
   - if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then yarn upload-binary || exit 0; fi;
