@@ -1,6 +1,6 @@
 {
   "name": "cert-converter",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Utility to convert certificate encodings",
   "main": "lib/index.js",
   "author": "welsonjr",
