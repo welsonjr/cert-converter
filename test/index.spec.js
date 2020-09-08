@@ -16,9 +16,13 @@ describe('Basic', () => {
         expect(conv).toBeTruthy();
     });
 
-    test('should convert from pem to pfx', () => {
-        const conv = pemToPfx("123456", certKey, pemCert);
-        expect(conv).toBeTruthy();
+    test.each([
+        ["123456",""], //Export pfx without password
+        ["123456","123456"] //Export pfx with password
+
+    ]) 
+    ('%# should convert from pem to pfx', (inPass, exPass) => {
+            expect(() => pemToPfx(inPass, exPass, certKey, pemCert)).not.toThrow();
     });
 });
 

@@ -33,12 +33,10 @@ fn der_to_pem(mut cx: FunctionContext) -> JsResult<JsBuffer> {
 }
 
 fn pem_to_pfx(mut cx: FunctionContext) -> JsResult<JsBuffer> {
-    let key_password = match cx.argument::<JsString>(0) {
-        Ok(p) => p.value(),
-        Err(_) => "".to_owned(),
-    };
-    let key_buffer: Handle<JsBuffer> = cx.argument(1)?;
-    let cert_buffer: Handle<JsBuffer> = cx.argument(2)?;
+    let key_password = cx.argument::<JsString>(0)?.value();
+    let export_password = cx.argument::<JsString>(1)?.value();
+    let key_buffer: Handle<JsBuffer> = cx.argument(2)?;
+    let cert_buffer: Handle<JsBuffer> = cx.argument(3)?;
 
     let key = cx.borrow(&key_buffer, |data| {
         PKey::private_key_from_pem_passphrase(data.as_slice(), key_password.as_bytes())
@@ -50,7 +48,12 @@ fn pem_to_pfx(mut cx: FunctionContext) -> JsResult<JsBuffer> {
     });
 
     let pfx = Pkcs12::builder()
-        .build("", "cert", key.as_ref(), cert.as_ref())
+        .build(
+            export_password.as_str(),
+            "cert",
+            key.as_ref(),
+            cert.as_ref(),
+        )
         .unwrap()
         .to_der()
         .unwrap();
