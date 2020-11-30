@@ -1,12 +1,12 @@
 {
   "name": "cert-converter",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Utility to convert certificate encodings",
   "main": "lib/index.js",
   "author": "welsonjr",
   "license": "MIT",
   "dependencies": {
-    "neon-cli": "^0.4.0",
+    "neon-cli": "^0.5.3",
     "node-pre-gyp": "amilajack/node-pre-gyp#neon-compat",
     "node-pre-gyp-github": "^1.4.3"
   },
