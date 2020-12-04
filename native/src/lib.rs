@@ -3,7 +3,7 @@ use openssl::pkcs12::*;
 use openssl::pkey::*;
 use openssl::x509::*;
 
-fn convert_to_jsbuffer<'a>(mut cx: FunctionContext<'a>, data: Vec<u8>) -> JsResult<'a, JsBuffer> {
+fn convert_to_jsbuffer<'a>(mut cx: FunctionContext<'a>, data: &Vec<u8>) -> JsResult<'a, JsBuffer> {
     let ret = cx.buffer(data.len() as u32)?;
     for (i, &v) in data.iter().enumerate() {
         let value = cx.number(v);
@@ -20,7 +20,7 @@ fn pem_to_der(mut cx: FunctionContext) -> JsResult<JsBuffer> {
     });
     let der = cert.to_der().expect("Failed to convert");
 
-    convert_to_jsbuffer(cx, der)
+    convert_to_jsbuffer(cx, &der)
 }
 
 fn der_to_pem(mut cx: FunctionContext) -> JsResult<JsBuffer> {
@@ -29,7 +29,7 @@ fn der_to_pem(mut cx: FunctionContext) -> JsResult<JsBuffer> {
         X509::from_der(data.as_slice()).expect("Wrong encoding")
     });
     let pem = cert.to_pem().expect("Failed to convert");
-    convert_to_jsbuffer(cx, pem)
+    convert_to_jsbuffer(cx, &pem)
 }
 
 fn pem_to_pfx(mut cx: FunctionContext) -> JsResult<JsBuffer> {
@@ -58,7 +58,7 @@ fn pem_to_pfx(mut cx: FunctionContext) -> JsResult<JsBuffer> {
         .to_der()
         .unwrap();
 
-    convert_to_jsbuffer(cx, pfx)
+    convert_to_jsbuffer(cx, &pfx)
 }
 
 register_module!(mut cx, {
