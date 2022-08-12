@@ -17,10 +17,10 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: cargo build
+          command: npm run build-release
           name: Build app
       - persist_to_workspace:
-          root: ~/native
+          root: ~/project
           paths:
             - native
 
