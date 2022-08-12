@@ -8,14 +8,15 @@
     "build-debug": "npm run build --",
     "build-release": "npm run build -- --release",
     "install": "npm run build-release",
-    "upload-binary": "yarn build-release && node-pre-gyp package && node-pre-gyp-github publish",
+    "upload-binary": "npm run build-release && node-pre-gyp package && node-pre-gyp-github publish",
     "test": "cargo test"
   },
   "author": "welsonjr",
   "license": "ISC",
   "devDependencies": {
     "@mapbox/node-pre-gyp": "^1.0.9",
-    "cargo-cp-artifact": "^0.1"
+    "cargo-cp-artifact": "^0.1",
+    "node-pre-gyp-github": "^1.4.4"
   },
   "repository": {
     "type": "git",
