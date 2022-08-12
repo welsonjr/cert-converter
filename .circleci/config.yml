@@ -2,18 +2,21 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 orbs:
-  node: circleci/node@4.7.0
+  node: circleci/node@5.0.2
 
 jobs:
   build:
     docker:
-      - image: ubuntu-1604:201903-01
+      - image: circleci/rust:latest-node
+        auth: welsonjr
+        password: $DOCKERHUB_PASSWORD
+
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run build
+          command: cargo build
           name: Build app
       - persist_to_workspace:
           root: ~/native
