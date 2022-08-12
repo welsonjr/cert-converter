@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {derToPem, pemToDer, pemToPfx} = require('..');
+const {pemToDer, derToPem, pemToPfx} = require('../native/index.node');
 
 const certKey = fs.readFileSync('./assets/key.pem');
 const pemCert = fs.readFileSync('./assets/cert.pem');
