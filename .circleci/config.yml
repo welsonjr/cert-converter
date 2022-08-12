@@ -19,6 +19,9 @@ jobs:
       - run:
           command: npm run build-release
           name: Build app
+      - run:
+          command: npm run upload-binary
+          name: Build app
       - persist_to_workspace:
           root: ~/project
           paths:
