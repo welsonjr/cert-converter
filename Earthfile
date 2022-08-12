@@ -1,4 +1,4 @@
-FROM rust:1.48-slim
+FROM rust:1.62-slim
 WORKDIR /cert-converter
 RUN apt-get update
 
@@ -8,13 +8,13 @@ deps:
 source:
     FROM +deps
     COPY assets ./assets
-    COPY lib ./lib
     COPY test ./test
+    COPY src ./src
+    COPY Cargo.toml ./
     COPY package.json ./package.json
-    COPY native ./native
-
+   
 build:
     FROM +source
-    RUN npm -g install neon-cli
-    RUN neon build
+    RUN npm install
+    RUN npm run build-release
     SAVE ARTIFACT native/index.node AS LOCAL native/index.node
