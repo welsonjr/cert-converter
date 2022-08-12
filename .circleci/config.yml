@@ -8,8 +8,9 @@ jobs:
   build:
     docker:
       - image: circleci/rust:latest-node
-        auth: welsonjr
-        password: $DOCKERHUB_PASSWORD
+        auth: 
+          username: welsonjr
+          password: $DOCKERHUB_PASSWORD
 
     steps:
       - checkout
