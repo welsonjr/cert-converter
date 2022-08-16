@@ -1,6 +1,6 @@
 {
   "name": "cert-converter",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "",
   "main": "index.node",
   "scripts": {
@@ -23,14 +23,16 @@
     "url": "git+https://github.com/welsonjr/cert-converter.git"
   },
   "files": [
-    "native/index.node"
+    "native/index.node",
+    "src"
   ],
   "binary": {
     "module_name": "index",
     "host": "https://github.com/welsonjr/cert-converter/releases/download/",
     "remote_path": "{version}",
     "package_name": "{node_abi}-{platform}-{arch}.tar.gz",
-    "module_path": "./native"
+    "module_path": "./native",
+    "pkg_path": "."
   },
   "dependencies": {
     "jest": "^28.1.2"
